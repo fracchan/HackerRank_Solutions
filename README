@@ -1,0 +1,8 @@
+Help on HackerRank_Solutions:
+
+NAME
+  HackerRank_Solutions - A repository containing solutions to HackerRank problems.
+  The solutions are divided by tracks. Each track has an assigned directory.
+  Name of the directories will be the same as HackerRank tracks and challenges.
+  
+  Languages: Java, MySQL, Python and shell.
