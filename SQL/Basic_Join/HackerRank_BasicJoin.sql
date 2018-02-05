@@ -52,6 +52,8 @@ order by count(ch.challenge_id) desc, ha.hacker_id
 /*
 Following solution does not work on HackerRank website due to 
 the "sql_mode=only_full_group_by" mode chosen by HackerRank
+that make impossible to group by fewer fields than the ones
+in the select clause
 
 select wa.id, wp.age, wa.coins_needed, wa.power
 from wands wa
@@ -74,3 +76,5 @@ and wa.coins_needed = (select min(coins_needed)
                       ) 
 order by wa.power desc, wp.age desc
 ;
+
+-- Challenges
