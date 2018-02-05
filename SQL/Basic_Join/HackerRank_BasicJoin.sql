@@ -49,3 +49,28 @@ order by count(ch.challenge_id) desc, ha.hacker_id
 ;
 
 -- Ollivander's Inventory
+/*
+Following solution does not work on HackerRank website due to 
+the "sql_mode=only_full_group_by" mode chosen by HackerRank
+
+select wa.id, wp.age, wa.coins_needed, wa.power
+from wands wa
+join wands_property wp using(code)
+where is_evil = 0 
+group by wa.code, wa.power
+having min(wa.coins_needed)
+order by wa.power desc, wp.age desc
+;
+*/
+
+select wa.id, wp.age, wa.coins_needed, wa.power 
+from wands as wa
+join wands_property as wp on (wa.code = wp.code) 
+where wp.is_evil = 0 
+and wa.coins_needed = (select min(coins_needed) 
+                      from wands as w1 
+                      where w1.code = wa.code 
+                      and w1.power = wa.power 
+                      ) 
+order by wa.power desc, wp.age desc
+;
