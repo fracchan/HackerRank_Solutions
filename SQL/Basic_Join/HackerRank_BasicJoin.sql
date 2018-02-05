@@ -78,3 +78,36 @@ order by wa.power desc, wp.age desc
 ;
 
 -- Challenges
+select ha.hacker_id
+, ha.name
+, count(ch.challenge_id) as total
+from hackers ha
+join challenges ch using (hacker_id)
+group by hacker_id, ha.name
+having total =
+-- this total is max number of challenge created by a single hacker
+-- outputs all the hacker_id
+  (select max(t1.cnt)
+   from (select count(challenge_id) as cnt
+         from challenges
+         group by hacker_id) t1
+   )
+   or total in 
+-- this total is a list of all the different number of challenges created by the
+-- various hackers skipping the number of challenges if more than one hacker
+-- created the same amount of challenges
+   (select t2.cnt 
+    from (select count(challenge_id) as cnt
+          from challenges
+          group by hacker_id) t2
+    group by t2.cnt
+    having count(t2.cnt)=1 
+    )
+order by count(ch.challenge_id) desc, ha.hacker_id
+;
+
+
+
+
+
+
