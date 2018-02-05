@@ -48,3 +48,4 @@ having count(ch.challenge_id) > 1
 order by count(ch.challenge_id) desc, ha.hacker_id
 ;
 
+-- Ollivander's Inventory
