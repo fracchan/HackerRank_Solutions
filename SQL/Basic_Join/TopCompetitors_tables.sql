@@ -19,7 +19,7 @@ create table challenges (
   , hacker_id           int  unsigned not null
   , difficulty_level int unsigned not null
   , constraint ha_chall_dl_fk foreign key (difficulty_level)
-    references hackerrank.difficulty (difficulty_level)
+    references difficulty (difficulty_level)
 ) engine = INNODB;
 
 
@@ -29,9 +29,9 @@ create table submissions (
   , challenge_id  int  unsigned not null
   , score int unsigned not null
   , constraint ha_sub_ha_fk        foreign key(hacker_id) 
-               references hackerrank.hackers  (hacker_id)
+               references hackers  (hacker_id)
   , constraint ha_sub_ch_fk        foreign key(challenge_id) 
-               references hackerrank.challenges  (challenge_id) 
+               references challenges  (challenge_id) 
 ) engine = INNODB;
 
 insert into hackers values
