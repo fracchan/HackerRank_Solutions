@@ -106,8 +106,19 @@ having total =
 order by count(ch.challenge_id) desc, ha.hacker_id
 ;
 
-
-
-
-
+-- Contest Leaderboard
+SELECT ha.hacker_id, ha.name, SUM(max_score) AS total_score
+FROM hackers ha 
+JOIN (
+  SELECT hacker_id
+  , challenge_id
+  , MAX(score) AS max_score
+  FROM submissions
+  GROUP BY hacker_id, challenge_id
+  HAVING max_score > 0
+) AS t1
+ON ha.hacker_id = t1.hacker_id
+GROUP BY ha.hacker_id, ha.name
+ORDER BY total_score DESC, ha.hacker_id
+;
 
