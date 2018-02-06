@@ -3,10 +3,7 @@ create table Functions (
 , y int unsigned not null
 ) engine = INNODB;
 
-/*
-The following insert statement does not let you take into account of single line where x=y.
-Here are all pairs already
-*/
+-- Sample Input
 insert into Functions values 
   (20, 20)
 , (20, 20)
@@ -16,8 +13,12 @@ insert into Functions values
 , (21, 20)
 ;
 
--- TO make the previous insert statement useful add a single line to create a non-pair:
-insert into Functions values (24, 20);
+/*
+TO make the Sample Input more useful for testing, we need to add a set of values where
+x = y so that we can test if our select query counts single case as pair when they have 
+the same x and y.
+*/
+insert into Functions values (24, 24);
 
 /*
 -- Insert Statement for Testcase 0
