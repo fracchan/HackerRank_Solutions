@@ -80,6 +80,9 @@ insert into Challenges values
 , (72974, 56685)
 ;
 
+
+
+
 -- challenge 75516 not in the challenges
 insert into View_Stats values 
   (47127, 26, 19) 
@@ -103,3 +106,19 @@ insert into Submission_Stats values
 , (72974, 82, 14)
 , (47127, 28, 11)
 ;
+
+-- Adding the following two inserts query make it easier to notice mistakes in the
+-- select query
+insert into Challenges values (11111, 56685);
+insert into Submission_Stats values  (11111, 10, 8);
+
+/*
+RESULTS with the two new insert statements
++------------+-----------+--------+----------------+-------------------+------------------+-------------------------+
+| contest_id | hacker_id | name   | sum(tt.sumsub) | sum(tt.sumaccsub) | sum(tt.sum_view) | sum(tt.sum_unique_view) |
++------------+-----------+--------+----------------+-------------------+------------------+-------------------------+
+|      66406 |     17973 | Rose   |            111 |                39 |              156 |                      56 |
+|      66556 |     79153 | Angela |              0 |                 0 |               11 |                      10 |
+|      94828 |     80275 | Frank  |            160 |                46 |               41 |                      15 |
++------------+-----------+--------+----------------+-------------------+------------------+-------------------------+
+*/
